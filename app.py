@@ -117,11 +117,27 @@ def view_collection():
 
     search_query = request.args.get('search_query', '')
     query = '''
-    SELECT UserCardCollection.id, Card.name, UserCardCollection.quantity, UserCardCollection.condition, UserCardCollection.notes, CardImage.image_url
-    FROM UserCardCollection
-    JOIN Card ON UserCardCollection.card_id = Card.id
-    LEFT JOIN CardImage ON Card.id = CardImage.card_id
-    WHERE UserCardCollection.user_id = ?
+    SELECT 
+        UserCardCollectionNew.id, 
+        Card.name, 
+        COUNT(UserCardCollectionNew.card_id) AS quantity,  -- This counts the number of occurrences of each card_id
+        UserCardCollectionNew.condition, 
+        UserCardCollectionNew.notes, 
+        CardImage.image_url
+    FROM 
+        UserCardCollectionNew
+    JOIN 
+        Card ON UserCardCollectionNew.card_id = Card.id
+    LEFT JOIN 
+        CardImage ON Card.id = CardImage.card_id
+    WHERE 
+        UserCardCollectionNew.user_id = ?
+    GROUP BY 
+        UserCardCollectionNew.card_id, 
+        UserCardCollectionNew.condition, 
+        UserCardCollectionNew.notes;
+
+
     '''
 
     if search_query:
