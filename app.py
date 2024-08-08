@@ -122,16 +122,18 @@ def view_collection():
         SELECT 
             UserCardCollectionNew.id, 
             Card.name, 
-            COUNT(UserCardCollectionNew.card_id) AS quantity,  -- This counts the number of occurrences of each card_id
-            UserCardCollectionNew.condition, 
-            UserCardCollectionNew.notes, 
-            CardImage.image_url
+            COUNT(UserCardCollectionNew.card_id) AS quantity,  -- This counts the number of occurrences of each card_id 
+            CardImage.image_url,
+            CardPrice.amazon_price,
+            CardPrice.ebay_price
         FROM 
             UserCardCollectionNew
         JOIN 
             Card ON UserCardCollectionNew.card_id = Card.id
         LEFT JOIN 
             CardImage ON Card.id = CardImage.card_id
+        LEFT JOIN
+            CardPrice ON Card.id = CardPrice.card_id
         WHERE 
             UserCardCollectionNew.user_id = ?
         '''
