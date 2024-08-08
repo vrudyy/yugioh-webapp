@@ -29,8 +29,8 @@
                 <img src="{{ item[3] }}" alt="{{ item[1] }}">
                 <h2>{{ item[1] }}</h2>
                 <p>Quantity: {{ item[2] }}</p>
-                <p>Amazon Price: {{ item[4] }}</p>
-                <p>Ebay Price: {{ item[5] }}</p>
+                <p>Amazon Price: £{{ item[4] }}</p>
+                <p>Ebay Price: £{{ item[5] }}</p>
 
                 <form action="/delete_card" method="post" class="delete-form">
                     <input type="hidden" name="card_id" value="{{ item[0] }}">
