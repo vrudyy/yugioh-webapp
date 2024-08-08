@@ -26,16 +26,17 @@
     <div class="card-grid">
         {% for item in results %}
             <div class="card-item">
-                <img src="{{ item[5] }}" alt="{{ item[1] }}">
+                <img src="{{ item[3] }}" alt="{{ item[1] }}">
                 <h2>{{ item[1] }}</h2>
                 <p>Quantity: {{ item[2] }}</p>
-                <p>Condition: {{ item[3] }}</p>
-                <p>Notes: {{ item[4] }}</p>
+                <p>Amazon Price: {{ item[4] }}</p>
+
                 <form action="/delete_card" method="post" class="delete-form">
                     <input type="hidden" name="card_id" value="{{ item[0] }}">
                     <input type="number" name="amount" min="1" max="{{ item[2] }}" required>
                     <button type="submit">Remove</button>
                 </form>
+
             </div>
         {% endfor %}
     </div>

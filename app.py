@@ -117,11 +117,13 @@ def view_collection():
 
     search_query = request.args.get('search_query', '')
     query = '''
-    SELECT UserCardCollection.id, Card.name, UserCardCollection.quantity, UserCardCollection.condition, UserCardCollection.notes, CardImage.image_url
+    SELECT UserCardCollection.id, Card.name, UserCardCollection.quantity, CardImage.image_url, CardPrice.amazon_price
     FROM UserCardCollection
     JOIN Card ON UserCardCollection.card_id = Card.id
     LEFT JOIN CardImage ON Card.id = CardImage.card_id
-    WHERE UserCardCollection.user_id = ?
+    LEFT JOIN CardPrice ON Card.id = CardPrice.card_id
+    WHERE UserCardCollection.user_id = ?;
+
     '''
 
     if search_query:
