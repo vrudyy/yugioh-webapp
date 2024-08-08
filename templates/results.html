@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<h1>Welcome to Yu-Gi-Oh! Card Database</h1>
+<p>Search for Yu-Gi-Oh! cards by name or description, view card details, and manage your personal collection.</p>
+<form action="/search" method="get">
+    <label for="query">Search:</label>
+    <input type="text" id="query" name="query" required>
+    <button type="submit">Search</button>
+</form>
+<h1>Search Results for "{{ search_term }}"</h1>
+    <a href="/">Back to Search</a>
+    <div>
+        {% if results %}
+            <ul>
+                {% for card in results %}
+                    <li>
+                        <h2>{{ card[1] }}</h2>
+                        <p>{{ card[2] }}</p>
+                        <img src="{{ card[3] }}" alt="{{ card[1] }}" width="200">
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No cards found.</p>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,111 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Yu-Gi-Oh! Card Search{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .card-item {
+            flex: 1 0 18%; /* Adjust this percentage to control number of cards per row */
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            max-width: 18%; /* Ensures that each card item does not exceed 18% of container width */
+            margin: 0 auto; /* Centers the card item in the row */
+        }
+        .card-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .card-item h2 {
+            font-size: 1em;
+            margin: 10px 0;
+        }
+        .card-item p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .delete-form {
+            margin-top: 10px;
+        }
+        .delete-form input[type="number"] {
+            width: 60px;
+            margin-right: 5px;
+        }
+        .delete-form button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-form button:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

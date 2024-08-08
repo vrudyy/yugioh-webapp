@@ -1,0 +1,13 @@
+<!-- templates/search.html -->
+{% extends 'base.html' %}
+
+{% block title %}Search Yu-Gi-Oh! Cards{% endblock %}
+
+{% block content %}
+<h1>Search Cards</h1>
+<form action="/search" method="get">
+    <label for="query">Search:</label>
+    <input type="text" id="query" name="query" required>
+    <button type="submit">Search</button>
+</form>
+{% endblock %}

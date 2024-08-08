@@ -1,0 +1,14 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Yu-Gi-Oh! Card Database{% endblock %}
+
+{% block content %}
+<h1>Welcome to Yu-Gi-Oh! Card Database</h1>
+<p>Search for Yu-Gi-Oh! cards by name or description, view card details, and manage your personal collection.</p>
+<form action="/search" method="get">
+    <label for="query">Search:</label>
+    <input type="text" id="query" name="query" required>
+    <button type="submit">Search</button>
+</form>
+{% endblock %}
