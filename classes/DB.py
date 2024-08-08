@@ -55,6 +55,7 @@ class UserCardCollectionDB:
         return self.structure_the_results(results)
 
 
+
 db = UserCardCollectionDB("/Users/volodymyrrudyy/PycharmProjects/yugioh-website/yugioh_cards.db")
 test = db.get_by_card_id(57420265)
 print(test)
