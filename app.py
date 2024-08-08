@@ -116,32 +116,40 @@ def view_collection():
     user_id = 1  # Assuming a single user; modify if you have user accounts
 
     search_query = request.args.get('search_query', '')
+
+    # Base query without the search condition
     query = '''
-    SELECT 
-        UserCardCollectionNew.id, 
-        Card.name, 
-        COUNT(UserCardCollectionNew.card_id) AS quantity,  -- This counts the number of occurrences of each card_id
-        UserCardCollectionNew.condition, 
-        UserCardCollectionNew.notes, 
-        CardImage.image_url
-    FROM 
-        UserCardCollectionNew
-    JOIN 
-        Card ON UserCardCollectionNew.card_id = Card.id
-    LEFT JOIN 
-        CardImage ON Card.id = CardImage.card_id
-    WHERE 
-        UserCardCollectionNew.user_id = ?
-    GROUP BY 
-        UserCardCollectionNew.card_id, 
-        UserCardCollectionNew.condition, 
-        UserCardCollectionNew.notes;
+        SELECT 
+            UserCardCollectionNew.id, 
+            Card.name, 
+            COUNT(UserCardCollectionNew.card_id) AS quantity,  -- This counts the number of occurrences of each card_id
+            UserCardCollectionNew.condition, 
+            UserCardCollectionNew.notes, 
+            CardImage.image_url
+        FROM 
+            UserCardCollectionNew
+        JOIN 
+            Card ON UserCardCollectionNew.card_id = Card.id
+        LEFT JOIN 
+            CardImage ON Card.id = CardImage.card_id
+        WHERE 
+            UserCardCollectionNew.user_id = ?
+        '''
 
-
-    '''
-
+    # Add search condition if there is a search query
     if search_query:
         query += " AND (Card.name LIKE ? OR Card.description LIKE ?)"
+
+    # Add the GROUP BY clause
+    query += '''
+        GROUP BY 
+            UserCardCollectionNew.card_id, 
+            UserCardCollectionNew.condition, 
+            UserCardCollectionNew.notes;
+        '''
+
+    # Execute the query with the appropriate parameters
+    if search_query:
         cursor.execute(query, (user_id, f'%{search_query}%', f'%{search_query}%'))
     else:
         cursor.execute(query, (user_id,))
