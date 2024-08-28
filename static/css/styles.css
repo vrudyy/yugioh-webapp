@@ -121,6 +121,13 @@ input[type=text]:focus {
     text-align: center;
 }
 
+.form_group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
 /* Style for form elements to center them */
 input[type="text"],
 input[type="number"],
