@@ -4,24 +4,26 @@
 {% block title %}View Collection{% endblock %}
 
 {% block content %}
-    <h1>Add Card to Your Collection</h1>
-    <form action="/add_card" method="post">
-        <label for="set_code">Set Code:</label>
-        <input type="text" id="set_code" name="set_code" required>
-        <br>
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" min="1" value="1">
-        <br>
-        <button type="submit">Add Card</button>
-    </form>
+<!--    <h1>Add Card to Your Collection</h1>-->
+<!--    <form action="/add_card" method="post">-->
+<!--        <label for="set_code">Set Code:</label>-->
+<!--        <input type="text" id="set_code" name="set_code" required>-->
+<!--        <br>-->
+<!--        <label for="quantity">Quantity:</label>-->
+<!--        <input type="number" id="quantity" name="quantity" min="1" value="1">-->
+<!--        <br>-->
+<!--        <button type="submit">Add Card</button>-->
+<!--    </form>-->
 
     <h1>Your Card Collection</h1>
-
-    <form action="/view_collection" method="get" class="filter-form">
-        <label for="search_query">Search:</label>
+    <div class="search_cards_collection">
+        <form action="/view_collection" method="get" class="filter-form">
+        <label for="search_query">Search card in your collection:</label>
         <input type="text" id="search_query" name="search_query" value="{{ search_query }}">
         <button type="submit">Search</button>
-    </form>
+        </form>
+    </div>
+
 
     <div class="card-grid">
         {% for item in results %}
