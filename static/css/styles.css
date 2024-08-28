@@ -111,6 +111,17 @@ input[type=text]:focus {
   border: 3px solid #555;
 }
 
+.main_page_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main_page {
+    text-align:center;
+}
 /* Center the form on the screen */
 .form-container {
     display: flex;
